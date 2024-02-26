@@ -1,0 +1,13 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#overlay {
+    background-color: blue;
+    z-index: 3;
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
