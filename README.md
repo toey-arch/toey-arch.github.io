@@ -1,4 +1,4 @@
-# 🚀 About Me
+# 🦄 About Me
 I'm an architech student nearing graduation from Rangsit University (First Honor). I'm passionate about home and interrior design.
 
 ## 🔗 Links
@@ -13,7 +13,7 @@ I'm an architech student nearing graduation from Rangsit University (First Honor
 ## 🛠 Skills
 Sketchup, Photoshop, Autocad, Enscape, Lumion, Rhino
 
-## About This Project
+## 🚑 About This Project
 
 ### Intro
 
