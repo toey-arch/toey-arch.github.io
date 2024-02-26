@@ -13,3 +13,32 @@ This project is the design of Healing Center whose purpose is to encourage posit
 
 ## 🛠 Skills
 Sketchup, Photoshop, Autocad, Enscape, Lumion, Rhino
+
+## About This Project
+
+### Setup
+
+To setup this project, run the following command
+
+```bash
+  cd {this_project}
+  npm i
+```
+
+### Start
+
+To start this project, run the following command.
+
+```bash
+  npx vite
+```
+
+This should now open a url like http://localhost:5173
+
+### Build
+
+To build this project, run the following command. Note that "--outDir ./docs" is optional.
+
+```bash
+  npx vite build --outDir ./docs
+```
