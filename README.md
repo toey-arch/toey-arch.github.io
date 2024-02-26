@@ -3,7 +3,7 @@ I'm an architech student nearing graduation from Rangsit University (First Honor
 
 ## 🔗 Links
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-FFC0CB?style=for-the-badge&logo=undertale&logoColor=#E71D29)](https://katherineoelsner.com/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FFC0CB?style=for-the-badge&logo=undertale&logoColor=#E71D29)](https://toey-arch.github.io/)
 
 [![Thesis](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/)
 
