@@ -9,12 +9,15 @@ I'm an architech student nearing graduation from Rangsit University (First Honor
 
 [![LinkedIn](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
 
-This project is the design of Healing Center whose purpose is to encourage positive healing environment for lecturers and students of Rangsit University
 
 ## 🛠 Skills
 Sketchup, Photoshop, Autocad, Enscape, Lumion, Rhino
 
 ## About This Project
+
+### Intro
+
+This project is the design of Healing Center whose purpose is to encourage positive healing environment for lecturers and students of Rangsit University
 
 ### Setup
 
