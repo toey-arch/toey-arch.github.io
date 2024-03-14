@@ -4,7 +4,7 @@ html, body {
 }
 
 #overlay {
-    background-color: rgba(0, 0, 255, 0.075);
+    background-color: rgba(0, 0, 255, 0.005);
     z-index: 3;
     display: block;
     position: absolute;
