@@ -13,7 +13,9 @@ class Thesis {
     init() {
         this.clock = new THREE.Clock();
         this.container = document.getElementById('container');
-
+        this.overlay = document.getElementById('overlay');
+        this.loadingBar = document.getElementById('progress');
+        this.message = document.getElementById('message');
         this.stats = new Stats();
         this.stats.domElement.style.position = 'absolute';
         this.stats.domElement.style.top = '0px';
@@ -84,9 +86,14 @@ class Thesis {
                 let model = gltf.scene;
                 model.position.set(-800, -30, 70)
                 this.scene.add(gltf.scene);
-
+                this.overlay.style.display = 'none';
         }, (loading)=>{
-            console.log(( loading.loaded / loading.total * 100 ) + '% loaded')
+            let percent = loading.loaded / loading.total * 100
+            this.message.innerText = "Loading "+ percent.toFixed(0) + "%"
+            this.loadingBar.style.width = percent + '%';
+            if (percent == 100) {
+                this.message.innerText = "Rendering inprogress";
+            }
         }, (error)=>{
             console.log(error)
         })
