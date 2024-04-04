@@ -1,57 +1,57 @@
 export default class InputController {
-    constructor(target) {
-        this.target_ = target || document;
+    constructor(camera_) {
+        this.camera = camera_;
         this.initialize_();
     }
 
     initialize_() {
-        this.current_ = {
-            leftButton: false,
-            rightButton: false,
-            mouseXDelta: 0,
-            mouseYDelta: 0,
-            mouseX: 0,
-            mouseY: 0,
-        };
-        const canvas = document.querySelector("canvas");
-        this.previous_ = null;
+        this.canvas = document.querySelector("canvas");
+
         this.keys_ = {};
-        this.previousKeys_ = {};
-        this.target_.addEventListener('mousedown', (e) => this.onMouseDown_(e), false);
-        this.target_.addEventListener('mousemove', (e) => this.onMouseMove_(e), false);
-        this.target_.addEventListener('mouseup', (e) => this.onMouseUp_(e), false);
-        this.target_.addEventListener('keydown', (e) => this.onKeyDown_(e), false);
-        this.target_.addEventListener('keyup', (e) => this.onKeyUp_(e), false);
-        canvas.addEventListener('click', async () => {
-            if (!document.pointerLockElement) {
-                await canvas.requestPointerLock({
-                    unadjustedMovement: true,
-                })
-            }
-        })
+
+        this.canvas.addEventListener('mousedown', (e) => this.onMouseDown_(e), false);
+        this.canvas.addEventListener('mousemove', (e) => this.onMouseMove_(e), false);
+        this.canvas.addEventListener('mouseup', (e) => this.onMouseUp_(e), false);
+        this.canvas.addEventListener('keydown', (e) => this.onKeyDown_(e), false);
+        this.canvas.addEventListener('keyup', (e) => this.onKeyUp_(e), false);
+        // canvas.addEventListener('click', async () => {
+        //     if (!document.pointerLockElement) {
+        //         await canvas.requestPointerLock({
+        //             unadjustedMovement: true,
+        //         })
+        //     }
+        // })
     }
 
     onMouseMove_(e) {
         if (document.pointerLockElement) {
-            if (this.previous_ === null) {
-                this.previous_ = { ...this.current_ };
-            }
+            this.camera.rotation.y -= e.movementX/500;
+            this.camera.rotation.x -= e.movementY/500;
+            // if (this.previous_ === null) {
+            //     this.previous_ = { ...this.current_ };
+            // }
 
-            this.current_.mouseXDelta = e.movementX;
-            this.current_.mouseYDelta = e.movementY;
+            // this.current_.mouseXDelta = e.movementX;
+            // this.current_.mouseYDelta = e.movementY;
         }
     }
 
-    onMouseDown_(e) {
+    async onMouseDown_(e) {
+        if (!document.pointerLockElement) {
+            await this.canvas.requestPointerLock({
+                unadjustedMovement: true,
+            })
+        }
+
         this.onMouseMove_(e);
 
         switch (e.button) {
             case 0: {
-                this.current_.leftButton = true;
+                
                 break;
             }
             case 2: {
-                this.current_.rightButton = true;
+                
                 break;
             }
         }
@@ -62,11 +62,11 @@ export default class InputController {
 
         switch (e.button) {
             case 0: {
-                this.current_.leftButton = false;
+                
                 break;
             }
             case 2: {
-                this.current_.rightButton = false;
+                
                 break;
             }
         }
@@ -90,12 +90,4 @@ export default class InputController {
         return this.previous_ !== null;
     }
 
-    update(_) {
-        if (this.previous_ !== null) {
-            this.current_.mouseXDelta = this.current_.mouseX - this.previous_.mouseX;
-            this.current_.mouseYDelta = this.current_.mouseY - this.previous_.mouseY;
-
-            this.previous_ = { ...this.current_ };
-        }
-    }
 };

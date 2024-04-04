@@ -1,10 +1,8 @@
 import * as THREE from 'three';
 // import {FirstPersonControls} from 'three/addons/controls/FirstPersonControls.js';
 import { FirstPersonCamera } from './utility/firstpersonCam';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-function clamp(x, a, b) {
-    return Math.min(Math.max(x, a), b);
-}
 class ThesisDemo {
     constructor() {
         this.initialize_();
@@ -14,7 +12,6 @@ class ThesisDemo {
         this.initializeRenderer_();
         this.initializeLights_();
         this.initializeScene_();
-        this.initializePostFX_();
         this.initializeDemo_();
 
         this.previousRAF_ = null;
@@ -48,12 +45,12 @@ class ThesisDemo {
             this.onWindowResize_();
         }, false);
 
-        const fov = 60;
+        const fov = 90;
         const aspect = 1920 / 1080;
-        const near = 1.0;
+        const near = 0.1;
         const far = 1000.0;
         this.camera_ = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        this.camera_.position.set(0, 2, 0);
+        this.camera_.position.set(0, 20, 0);
 
         this.scene_ = new THREE.Scene();
 
@@ -63,18 +60,43 @@ class ThesisDemo {
     }
 
     initializeScene_() {
-        const loader = new THREE.CubeTextureLoader();
-        const texture = loader.load([
-            './resources/skybox/posx.jpg',
-            './resources/skybox/negx.jpg',
-            './resources/skybox/posy.jpg',
-            './resources/skybox/negy.jpg',
-            './resources/skybox/posz.jpg',
-            './resources/skybox/negz.jpg',
-        ]);
+        this.scene_.background = new THREE.Color(0x88ccee);
+        this.scene_.fog = new THREE.Fog(0x88ccee, 0, 500);
 
-        texture.encoding = THREE.sRGBEncoding;
-        this.scene_.background = texture;
+        const fillLight1 = new THREE.HemisphereLight(0x8dc1de, 0x00668d, 1.5);
+        fillLight1.position.set(2, 1, 1);
+        this.scene_.add(fillLight1);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+        directionalLight.position.set(- 5, 25, - 1);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.camera.near = 0.01;
+        directionalLight.shadow.camera.far = 500;
+        directionalLight.shadow.camera.right = 30;
+        directionalLight.shadow.camera.left = - 30;
+        directionalLight.shadow.camera.top = 30;
+        directionalLight.shadow.camera.bottom = - 30;
+        directionalLight.shadow.mapSize.width = 1024;
+        directionalLight.shadow.mapSize.height = 1024;
+        directionalLight.shadow.radius = 4;
+        directionalLight.shadow.bias = - 0.00006;
+        this.scene_.add(directionalLight);
+
+
+
+
+        // const loader = new THREE.CubeTextureLoader();
+        // const texture = loader.load([
+        //     './resources/skybox/posx.jpg',
+        //     './resources/skybox/negx.jpg',
+        //     './resources/skybox/posy.jpg',
+        //     './resources/skybox/negy.jpg',
+        //     './resources/skybox/posz.jpg',
+        //     './resources/skybox/negz.jpg',
+        // ]);
+
+        // texture.encoding = THREE.sRGBEncoding;
+        // this.scene_.background = texture;
 
         const mapLoader = new THREE.TextureLoader();
         const maxAnisotropy = this.threejs_.capabilities.getMaxAnisotropy();
@@ -93,13 +115,13 @@ class ThesisDemo {
         plane.rotation.x = -Math.PI / 2;
         this.scene_.add(plane);
 
-        const box = new THREE.Mesh(
-            new THREE.BoxGeometry(4, 4, 4),
-            this.loadMaterial_('vintage-tile1_', 0.2));
-        box.position.set(10, 2, 0);
-        box.castShadow = true;
-        box.receiveShadow = true;
-        this.scene_.add(box);
+        // const box = new THREE.Mesh(
+        //     new THREE.BoxGeometry(4, 4, 4),
+        //     this.loadMaterial_('vintage-tile1_', 0.2));
+        // box.position.set(10, 2, 0);
+        // box.castShadow = true;
+        // box.receiveShadow = true;
+        // this.scene_.add(box);
 
         const concreteMaterial = this.loadMaterial_('concrete3-', 4);
 
@@ -138,7 +160,8 @@ class ThesisDemo {
         // Create Box3 for each mesh in the scene so that we can
         // do some easy intersection tests.
         const meshes = [
-            plane, box, wall1, wall2, wall3, wall4];
+            // plane, box, wall1, wall2, wall3, wall4];
+            plane, wall1, wall2, wall3, wall4];
 
         this.objects_ = [];
 
@@ -148,16 +171,36 @@ class ThesisDemo {
             this.objects_.push(b);
         }
 
-        // Crosshair
-        const crosshair = mapLoader.load('resources/crosshair.png');
-        crosshair.anisotropy = maxAnisotropy;
+        // // Crosshair
+        // const crosshair = mapLoader.load('resources/crosshair.png');
+        // crosshair.anisotropy = maxAnisotropy;
 
-        this.sprite_ = new THREE.Sprite(
-            new THREE.SpriteMaterial({ map: crosshair, color: 0xffffff, fog: false, depthTest: false, depthWrite: false }));
-        this.sprite_.scale.set(0.15, 0.15 * this.camera_.aspect, 1)
-        this.sprite_.position.set(0, 0, -10);
+        // this.sprite_ = new THREE.Sprite(
+        //     new THREE.SpriteMaterial({ map: crosshair, color: 0xffffff, fog: false, depthTest: false, depthWrite: false }));
+        // this.sprite_.scale.set(0.15, 0.15 * this.camera_.aspect, 1)
+        // this.sprite_.position.set(0, 0, -10);
 
-        this.uiScene_.add(this.sprite_);
+        // this.uiScene_.add(this.sprite_);
+
+        const gui = new GUI( { width: 200});
+        gui.add({debug: false}, 'debug').onChange((val)=>{
+            console.log(val)
+        })
+        gui.add({height: 170}, 'height').onChange((val)=>{
+            console.log(val)
+        })
+        gui.add({Forward: "w"}, 'Forward').onChange((val)=>{
+            console.log(val)
+        })
+        gui.add({Backward: "s"}, 'Backward').onChange((val)=>{
+            console.log(val)
+        })
+        gui.add({Left: "a"}, 'Left').onChange((val)=>{
+            console.log(val)
+        })
+        gui.add({Right: "d"}, 'Right').onChange((val)=>{
+            console.log(val)
+        })
     }
 
     initializeLights_() {
@@ -225,9 +268,6 @@ class ThesisDemo {
         });
 
         return material;
-    }
-
-    initializePostFX_() {
     }
 
     onWindowResize_() {
