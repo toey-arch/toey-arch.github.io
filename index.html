@@ -1,73 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Saranya Tongmee's Portfolio</title>
-		<link rel="stylesheet" href="index.css">
-		<link rel="icon" type="image/x-icon" href="/src/static/icons/favicon.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	</head>
-	<body>
-		<div class="navbar bg-base-100">
-			<div class="navbar-start">
-			  <div class="dropdown">
-				<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-				  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-				</div>
-				<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-				  <li><a>Item 1</a></li>
-				  <li>
-					<a>Parent</a>
-					<ul class="p-2">
-					  <li><a>Submenu 1</a></li>
-					  <li><a>Submenu 2</a></li>
-					</ul>
-				  </li>
-				  <li><a>Item 3</a></li>
-				</ul>
-			  </div>
-			  <a class="btn btn-ghost text-xl">daisyUI</a>
-			</div>
-			<div class="navbar-center hidden lg:flex">
-			  <ul class="menu menu-horizontal px-1">
-				<li><a>Item 1</a></li>
-				<li>
-				  <details>
-					<summary>Parent</summary>
-					<ul class="p-2">
-					  <li><a>Submenu 1</a></li>
-					  <li><a>Submenu 2</a></li>
-					</ul>
-				  </details>
-				</li>
-				<li><a>Item 3</a></li>
-			  </ul>
-			</div>
-			<div class="navbar-end">
-			  <a class="btn">Button</a>
-			</div>
-		  </div>
-        <div id="container">
-			<div id="topNav" class="flex-container">
-				<div id="navL" class="flex-container">
-					<img id="logo" src="./src/static/ST.png" alt="Saranya Tongmee Logo">
-					<h1 id="name">SARANYA TONGMEE</h1>
-				</div>
-				<div id="navR" class="flex-container">
-					<h1>My Portfolio(WIP)</h1>
-					<a href="./src/Thesis/"><h1>Thesis(WIP)</h1></a>
-					<a><h1>Contact</h1></a>
-				</div>
-			</div>
-			<div id="content">
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, esse numquam. In dolorum molestias, fugit natus quibusdam esse quidem nemo laboriosam accusantium labore obcaecati vero! Nisi est modi hic adipisci. <br>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur fugit, ipsam officia reprehenderit aut quasi ad commodi molestias maiores soluta deserunt et voluptatem consequatur, in sint! Alias labore quae perferendis!<br>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, corrupti veniam ex blanditiis veritatis illum accusamus pariatur, nemo deleniti praesentium, quas dolore nobis ducimus earum quisquam beatae sapiente at. Dolor.<br>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga dolorem ullam aperiam rem soluta deleniti, at voluptas qui veritatis cum reprehenderit a consequatur saepe eaque suscipit excepturi dolores culpa accusamus.<br>
-				</p>
-			</div>
 
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>Saranya Tongmee's Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/x-icon" href="/src/static/icons/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-base-150">
+    <div id="navBarContainer" class="fixed float-top0 z-10 w-full p-2">
+        <div class="card shadow-xl bg-base-100">
+            <div class=" navbar ">
+                <div class="navbar-start">
+                    <!-- <div class="avatar">
+                        <div class="h-full mask mask-squircle">
+                            <img id="logo" src="./src/static/ST.png" alt="Saranya Tongmee Logo">
+                        </div>
+                    </div> -->
+                    <p class="text-2xl font-semibold pl-3 sm:hidden">Saranya T.</p>
+                    <p class="text-2xl font-semibold pl-3 hidden sm:block"> Saranya Tongmee</p>
+                </div>
+                <div class="navbar-end">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        </div>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><a href="./src/Thesis/">Thesis</a></li>
+                            <!-- <li>
+                                <a>Parent</a>
+                                <ul class="p-2">
+                                    <li><a>Submenu 1</a></li>
+                                    <li><a>Submenu 2</a></li>
+                                </ul>
+                            </li> -->
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                    <ul class="menu menu-horizontal px-1  hidden sm:flex">
+                        <li><a href="./src/Thesis/">Thesis</a></li>
+                        <!-- <li>
+                            <details>
+                                <summary>Parent</summary>
+                                <ul class="p-2">
+                                    <li><a>Submenu 1</a></li>
+                                    <li><a>Submenu 2</a></li>
+                                </ul>
+                            </details>
+                        </li> -->
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="container">
+        <div id="topNav" class="flex-container">
+            <div id="navL" class="flex-container">
+                <img id="logo" src="./src/static/ST.png" alt="Saranya Tongmee Logo">
+                <h1 id="name">SARANYA TONGMEE</h1>
+            </div>
+            <div id="navR" class="flex-container">
+                <h1>My Portfolio(WIP)</h1>
+                <a href="./src/Thesis/">
+                    <h1>Thesis(WIP)</h1>
+                </a>
+                <a>
+                    <h1>Contact</h1>
+                </a>
+            </div>
+        </div>
+        <div id="content">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, esse numquam. In dolorum molestias, fugit natus quibusdam esse quidem nemo laboriosam accusantium labore obcaecati vero! Nisi est modi hic adipisci. <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur fugit, ipsam officia reprehenderit aut quasi ad commodi molestias maiores soluta deserunt et voluptatem consequatur, in sint! Alias labore quae perferendis!<br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, corrupti veniam ex blanditiis veritatis illum accusamus pariatur, nemo deleniti praesentium, quas dolore nobis ducimus earum quisquam beatae sapiente at. Dolor.<br>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga dolorem ullam aperiam rem soluta deleniti, at voluptas qui veritatis cum reprehenderit a consequatur saepe eaque suscipit excepturi dolores culpa accusamus.<br>
+            </p>
+        </div>
+
+    </div>
+
+</body>
+
 </html>
