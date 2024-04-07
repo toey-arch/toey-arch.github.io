@@ -91,7 +91,7 @@ class Thesis {
         //sunLight.target = cube;
         //this.scene.add(envLight);
         this.loader = new GLTFLoader();
-        this.loader.load('static/model/scene.gltf',
+        this.loader.load('./static/model/scene.gltf',
             (gltf) => {
                 let model = gltf.scene;
                 model.position.set(0, 0, 0)
