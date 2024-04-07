@@ -53,7 +53,7 @@ class Thesis {
         this.scene.add(axisHelper);
 
         let envLight = new THREE.HemisphereLight(0xffffff, 0xa88132, 3);
-        envLight.position.set(0, 100, 0)
+        envLight.position.set(0, 150, 0)
         // let ambientLight = new THREE.AmbientLight(0x000000, 3)
         // ambientLight.position.set(0, 10 ,0) 
         // this.scene.add(ambientLight)
@@ -82,7 +82,7 @@ class Thesis {
         this.scene.add(cube);
 
         let sunLight = new THREE.DirectionalLight(0xffffff, 3);
-        sunLight.position.set(-1, 200, 1);
+        sunLight.position.set(-1, 10, 1);
         sunLight.position.multiplyScalar(10)
         this.scene.add(sunLight)
 
@@ -91,12 +91,21 @@ class Thesis {
         //sunLight.target = cube;
         //this.scene.add(envLight);
         this.loader = new GLTFLoader();
-        this.loader.load('./static/model/scene.gltf',
+        this.loader.load('../static/model/scene.gltf',
             (gltf) => {
                 let model = gltf.scene;
                 model.position.set(0, 0, 0)
-                this.scene.add(gltf.scene);
+                model.depthWrite = true;
+                model.depthTest = true;
+                console.log(model)
+                model.side = THREE.FrontSide;
+                this.scene.add(model);
+                gltf.animations; // Array<THREE.AnimationClip>
+                gltf.scene; // THREE.Scene
+                gltf.scenes; // Array<THREE.Scene>
+                gltf.cameras; // Array<THREE.Camera>
                 this.overlay.style.display = 'none';
+
             }, (loading) => {
                 let percent = loading.loaded / loading.total * 100
                 this.message.innerText = "Loading " + percent.toFixed(0) + "%"
@@ -109,8 +118,8 @@ class Thesis {
                 this.overlay.style.display = 'none';
             })
 
-        this.camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, .01, 900);
-        this.camera.position.set(100, 20, 8);
+        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, .01, 1200);
+        this.camera.position.set(100, 20, 100);
 
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.target.set(0, 0.5, 0);

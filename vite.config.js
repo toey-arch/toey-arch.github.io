@@ -3,7 +3,6 @@ const {
 } = require('path')
 
 module.exports = {
-    assetsInclude: ['./src/Thesis/static/**/*'],
     build: {
         rollupOptions: {
             input: {
